@@ -33,6 +33,9 @@ module.exports = {
       role: {
         type: Sequelize.STRING
       },
+      country: {
+        type: Sequelize.STRING
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE
