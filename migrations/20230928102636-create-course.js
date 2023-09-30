@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       spend_time: {
-        type: Sequelize.STRING
+        type: Sequelize.FLOAT
       },
       link: {
         type: Sequelize.STRING

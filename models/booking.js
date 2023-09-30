@@ -12,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       Booking.belongsTo(models.Course, { foreignKey: 'courseId' })
       Booking.belongsTo(models.User, { foreignKey: 'studentId' })
+      Booking.hasOne(models.Evaluation, { foreignKey: 'bookingId' })
     }
   }
   Booking.init({
     courseId: DataTypes.INTEGER,
     studentId: DataTypes.INTEGER,
-    startTime: DataTypes.DATE,
-    endTime: DataTypes.DATE
+    timePeriod: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Booking',

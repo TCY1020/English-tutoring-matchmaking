@@ -15,11 +15,8 @@ module.exports = {
       student_id: {
         type: Sequelize.INTEGER
       },
-      start_time: {
-        type: Sequelize.DATE
-      },
-      end_time: {
-        type: Sequelize.DATE
+      time_period: {
+        type: Sequelize.STRING
       },
       created_at: {
         allowNull: false,
