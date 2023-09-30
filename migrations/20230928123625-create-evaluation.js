@@ -15,6 +15,9 @@ module.exports = {
       teacher_id: {
         type: Sequelize.INTEGER
       },
+      booking_id: {
+        type: Sequelize.INTEGER
+      },
       comment: {
         type: Sequelize.STRING
       },
