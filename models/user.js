@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       User.hasMany(models.Course, { foreignKey: 'teacherId' })
       User.hasMany(models.Booking, { foreignKey: 'studentId' })
-      User.belongsToMany(User, {
+      User.belongsToMany(User, { // 我追蹤的人
         through: models.Evaluation,
         foreignKey: 'studentId',
         as: 'Evaluate'
       })
-      User.belongsToMany(User, {
+      User.belongsToMany(User, { // 我追蹤的人
         through: models.Evaluation,
         foreignKey: 'teacherId',
         as: 'Evaluated'
