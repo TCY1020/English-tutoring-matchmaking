@@ -18,7 +18,6 @@ module.exports = {
     await queryInterface.bulkInsert('Evaluations',
       Array.from({ length: bookingSlice.length }, (_, item) => ({
         student_id: bookingSlice[item].studentId,
-        teacher_id: bookingSlice[item].Course.teacherId,
         booking_id: bookingSlice[item].id,
         comment: faker.lorem.sentence({ min: 5, max: 15 }),
         score: (Math.floor(Math.random() * 5) + Math.random()).toFixed(1),
