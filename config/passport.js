@@ -32,7 +32,7 @@ passport.deserializeUser(async (id, cb) => {
         { model: Course }
       ]
     })
-    console.log(user.toJSON())
+    // console.log(user.toJSON())
     return cb(null, user.toJSON())
   } catch (err) {
     cb(err)
