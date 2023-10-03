@@ -9,6 +9,8 @@ router.get('/signup', userController.getSignUpPage)
 router.post('/signup', userController.postSignUp)
 router.get('/signin', userController.getSignInPage)
 router.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.postSignIn)
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'public_profile'] }))
+router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/signin' }), userController.postSignIn)
 router.get('/logout', userController.logout)
 
 router.get('/user/course', authenticated, authenticatedStudent, userController.getCourses)
