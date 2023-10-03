@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs')
+const { Op } = require('sequelize')
 const { User, Course } = require('../models')
 
 const userServices = {
@@ -32,7 +33,7 @@ const userServices = {
       const { keyword } = req.query
       const courses = await Course.findAll({
         include: [
-          { model: User, where: { ...keyword ? { name: keyword } : {} }, attributes: ['avatar', 'name', 'country', 'teachingStyle'] }
+          { model: User, where: { ...keyword ? { name: { [Op.substring]: `${keyword}` } } : {} }, attributes: ['avatar', 'name', 'country', 'teachingStyle'] }
         ],
         raw: true,
         nest: true
