@@ -5,8 +5,8 @@
       <div class="input-group mb-3">
         <!-- name="keyword" 設定參數名稱-->
         <!-- value="{{keyword}}" 預設input值-->
-        <input type="text" name="keyword" class="form-control" placeholder="Enter movie name to search..."
-          aria-label="Movie Name..." value="{{keyword}}" aria-describedby="search-button">
+        <input type="text" name="keyword" class="form-control" placeholder="Enter Teacher name to search..."
+          aria-label="Teacher Name..." value="{{keyword}}" aria-describedby="search-button">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="submit" id="search-button">Search</button>
         </div>
@@ -16,44 +16,25 @@
 </div>
 
 <div class="row mt-3">
-
+{{#each courses}}
   <div class="col-md-4">
     <div class="card mb-4 shadow-sm">
-      <a href="/restaurants/5}">
-        <img class="card-img-top img-fluid" src="https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/E08/000/08/E080000821.jpg&v=6351070ak&w=348&h=348" alt="Card image cap" width="286px" height="180px"
+      <a href="/user/course/{{this.teacherId}}">
+        <img class="card-img-top img-fluid" src="{{this.User.avatar}}" alt="Card image cap" width="286px" height="180px"
           style="transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
       </a>
       <div class="card-body">
         <p class="card-text">
-          <a href="/restaurants/5">
-            6666
+          <a href="/user/course/{{this.teacherId}}">
+            {{this.User.name}}
           </a>
         </p>
-        <span class="badge bg-secondary">{{this.Category.name}}</span>
-        <p class="card-text text-truncate">問問你的孩子，練習學測英文作文是不是也有這些問題</p>
+        <span class="badge bg-secondary">{{this.User.country}}</span>
+        <p class="card-text text-truncate">{{this.User.teachingStyle}}</p>
       </div>
     </div>
   </div>
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <a href="/restaurants/5}">
-          <img class="card-img-top img-fluid"
-            src="https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/E08/000/08/E080000821.jpg&v=6351070ak&w=348&h=348"
-            alt="Card image cap" width="286px" height="180px" style="transition: opacity 0.5s; opacity:0;"
-            onload="this.style.opacity=1;">
-        </a>
-        <div class="card-body">
-          <p class="card-text">
-            <a href="/restaurants/5">
-              6666
-            </a>
-          </p>
-          <span class="badge bg-secondary">{{this.Category.name}}</span>
-          <p class="card-text text-truncate">問問你的孩子，練習學測英文作文是不是也有這些問題</p>
-        </div>
-      </div>
-    </div>
-
+  {{/each}}
 </div>
 
 

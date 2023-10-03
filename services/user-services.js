@@ -29,17 +29,18 @@ const userServices = {
   },
   getCourses: async (req, cb) => {
     try {
+      const { keyword } = req.query
       const courses = await Course.findAll({
         include: [
-          { model: User, attributes: ['avatar', 'name', 'country', 'teachingStyle'] }
+          { model: User, where: { ...keyword ? { name: keyword } : {} }, attributes: ['avatar', 'name', 'country', 'teachingStyle'] }
         ],
         raw: true,
         nest: true
       })
-      const coursesData = courses.map(course => ({
-        ...course
-      }))
-      console.log(coursesData)
+      cb(null, {
+        courses,
+        keyword
+      })
     } catch (err) {
       cb(err)
     }
