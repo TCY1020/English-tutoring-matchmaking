@@ -1,0 +1,24 @@
+<header>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-secondary px-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><img src="https://i.52112.com/icon/jpg/256/20190904/57058/2536837.jpg" alt="" width="30" height="24"
+        class="d-inline-block align-text-top mx-1">英文家教媒合平台</a>
+      {{#if user}}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a href="/user/{{user.id}}">
+        <span class="text-white nav-link">Hi, {{ user.name }}</span>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a href="/logout"><button class="btn btn-outline-success my-sm-0 my-2">Logout</button></a>
+          </li>
+        </ul>
+      </div>
+      {{/if}}
+    </div>
+  </nav>
+</header>
