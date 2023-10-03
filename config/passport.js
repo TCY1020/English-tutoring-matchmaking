@@ -29,7 +29,7 @@ passport.use(new FacebookStrategy({
   profileFields: ['email', 'displayName']
 }, async (accessToken, refreshToken, profile, cb) => {
   try {
-    console.log(profile)
+    // console.log(profile)
     const { name, email } = profile._json
     const fbUser = await User.findOne({ where: { email } })
     if (fbUser) return cb(null, fbUser)
@@ -56,7 +56,7 @@ passport.deserializeUser(async (id, cb) => {
         { model: Course }
       ]
     })
-    console.log(user.toJSON())
+    // console.log(user.toJSON())
     return cb(null, user.toJSON())
   } catch (err) {
     cb(err)

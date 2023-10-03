@@ -24,7 +24,8 @@ const userController = {
     res.redirect('/signin')
   },
   getCourses: (req, res, next) => {
-    res.render('courses')
+    // userServices.getCourses(req, (err, data) => err ? next(err) : res.render('courses', data))
+    userServices.getCourses()
   }
 }
 

@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const { User } = require('../models')
+const { User, Course } = require('../models')
 
 const userServices = {
   signUp: async (req, cb) => {
@@ -23,6 +23,23 @@ const userServices = {
     try {
       const user = 'first student'
       return cb(null, { user })
+    } catch (err) {
+      cb(err)
+    }
+  },
+  getCourses: async (req, cb) => {
+    try {
+      const courses = await Course.findAll({
+        include: [
+          { model: User, attributes: ['avatar', 'name', 'country', 'teachingStyle'] }
+        ],
+        raw: true,
+        nest: true
+      })
+      const coursesData = courses.map(course => ({
+        ...course
+      }))
+      console.log(coursesData)
     } catch (err) {
       cb(err)
     }
