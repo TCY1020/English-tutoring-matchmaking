@@ -52,22 +52,28 @@ const userServices = {
   getCourse: async (req, cb) => {
     try {
       const { id } = req.params
-      const course = await Course.findByPk(id, {
+      const course = await Course.findAll({
+        where: { id },
         include: [
-          User
+          User,
+          { model: User, include: Evaluation }
         ],
         raw: true,
         nest: true
       })
-      if (!course) throw new Error('課程不存在')
-      const evaluation = await Evaluation.findAll({
-        where: { teacherId: course.teacherId },
-        raw: true
+      const teacher = {
+        ...course[0]
+      }
+      const evaluation = []
+      course.forEach((index) => {
+        evaluation.push({ comment: index.User.Evaluations.comment, score: index.User.Evaluations.score })
       })
-      const period = periodCut(course.startTime, course.endTime, course.spendTime)
-
-      // console.log({ course, evaluation, period })
-      cb(null, { course, evaluation, period })
+      // console.log('原始資料', course)
+      // console.log('老師資料', teacher)
+      // console.log('評價', evaluation)
+      if (!course) throw new Error('課程不存在')
+      const period = periodCut(teacher.startTime, teacher.endTime, teacher.spendTime)
+      cb(null, { teacher, evaluation, period })
     } catch (err) {
       cb(err)
     }

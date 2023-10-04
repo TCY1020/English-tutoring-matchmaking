@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-4">
     <img class="img-responsive center-block"
-      src="{{course.User.avatar}}"
+      src="{{teacher.User.avatar}}"
       style="width: 250px; margin-bottom: 25px; transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
   </div>
   <div class="col-md-8">
-    <h1>Name : {{course.User.name}}</h1>
-    <h2>Country : {{course.User.country}}</h2>
+    <h1>Name : {{teacher.User.name}}</h1>
+    <h2>Country : {{teacher.User.country}}</h2>
   </div>
   <form action="">
     <div class="form-row mb-3 w-25">
@@ -28,7 +28,7 @@
         Introduction
       </div>
       <div class="card-body">
-        <p class="card-text">{{course.User.introduction}}</p>
+        <p class="card-text">{{teacher.User.introduction}}</p>
       </div>
     </div>
     <div class="card">
@@ -36,7 +36,7 @@
         Teaching Style
       </div>
       <div class="card-body">
-        <p class="card-text">{{course.User.teachingStyle}}</p>
+        <p class="card-text">{{teacher.User.teachingStyle}}</p>
       </div>
     </div>
       <div class="card">
