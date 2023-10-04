@@ -19,13 +19,13 @@
 {{#each courses}}
   <div class="col-md-4">
     <div class="card mb-4 shadow-sm">
-      <a href="/user/course/{{this.teacherId}}">
+      <a href="/user/course/{{this.id}}">
         <img class="card-img-top img-fluid" src="{{this.User.avatar}}" alt="Card image cap" width="286px" height="180px"
           style="transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
       </a>
       <div class="card-body">
         <p class="card-text">
-          <a href="/user/course/{{this.teacherId}}">
+          <a href="/user/course/{{this.id}}">
             {{this.User.name}}
           </a>
         </p>

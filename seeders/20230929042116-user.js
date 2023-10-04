@@ -18,7 +18,7 @@ module.exports = {
       account: 'user1',
       role: 'student',
       country: faker.location.county(),
-      introduction: faker.lorem.sentence({ min: 5, max: 15 }),
+      introduction: faker.lorem.sentence({ min: 10, max: 30 }),
       avatar: faker.image.avatar(),
       created_at: new Date(),
       updated_at: new Date()
@@ -29,7 +29,7 @@ module.exports = {
       account: 'user2',
       role: 'student',
       country: faker.location.county(),
-      introduction: faker.lorem.sentence({ min: 5, max: 15 }),
+      introduction: faker.lorem.sentence({ min: 10, max: 30 }),
       avatar: faker.image.avatar(),
       created_at: new Date(),
       updated_at: new Date()
@@ -40,7 +40,7 @@ module.exports = {
       account: 'user3',
       role: 'student',
       country: faker.location.county(),
-      introduction: faker.lorem.sentence({ min: 5, max: 15 }),
+      introduction: faker.lorem.sentence({ min: 10, max: 30 }),
       avatar: faker.image.avatar(),
       created_at: new Date(),
       updated_at: new Date()
@@ -51,7 +51,8 @@ module.exports = {
       account: 'user4',
       role: 'teacher',
       country: faker.location.county(),
-      teaching_style: faker.lorem.sentence({ min: 5, max: 15 }),
+      introduction: faker.lorem.sentence({ min: 10, max: 30 }),
+      teaching_style: faker.lorem.sentence({ min: 10, max: 30 }),
       avatar: faker.image.avatar(),
       created_at: new Date(),
       updated_at: new Date()
@@ -62,7 +63,8 @@ module.exports = {
       account: 'user5',
       role: 'teacher',
       country: faker.location.county(),
-      teaching_style: faker.lorem.sentence({ min: 5, max: 15 }),
+      introduction: faker.lorem.sentence({ min: 10, max: 30 }),
+      teaching_style: faker.lorem.sentence({ min: 10, max: 30 }),
       avatar: faker.image.avatar(),
       created_at: new Date(),
       updated_at: new Date()

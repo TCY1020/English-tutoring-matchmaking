@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs')
 const { Op } = require('sequelize')
-const { User, Course } = require('../models')
+const sequelize = require('sequelize')
+const { periodCut } = require('../helpers/period-cutter')
+const { User, Course, Booking, Evaluation } = require('../models')
 
 const userServices = {
   signUp: async (req, cb) => {
@@ -38,10 +40,34 @@ const userServices = {
         raw: true,
         nest: true
       })
+      // console.log({ courses, keyword })
       cb(null, {
         courses,
         keyword
       })
+    } catch (err) {
+      cb(err)
+    }
+  },
+  getCourse: async (req, cb) => {
+    try {
+      const { id } = req.params
+      const course = await Course.findByPk(id, {
+        include: [
+          User
+        ],
+        raw: true,
+        nest: true
+      })
+      if (!course) throw new Error('課程不存在')
+      const evaluation = await Evaluation.findAll({
+        where: { teacherId: course.teacherId },
+        raw: true
+      })
+      const period = periodCut(course.startTime, course.endTime, course.spendTime)
+
+      // console.log({ course, evaluation, period })
+      cb(null, { course, evaluation, period })
     } catch (err) {
       cb(err)
     }

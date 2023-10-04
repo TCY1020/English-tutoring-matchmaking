@@ -14,6 +14,7 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', { failur
 router.get('/logout', userController.logout)
 
 router.get('/user/course', authenticated, authenticatedStudent, userController.getCourses)
+router.get('/user/course/:id', authenticated, authenticatedStudent, userController.getCourse)
 router.get('/', (req, res) => res.redirect('/user/course'))
 router.use('/', generalErrorHandler)
 

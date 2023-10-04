@@ -12,7 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       User.hasMany(models.Course, { foreignKey: 'teacherId' })
       User.hasMany(models.Booking, { foreignKey: 'studentId' })
-      User.hasMany(models.Evaluation, { foreignKey: 'studentId' })
+      User.hasMany(models.Evaluation, { foreignKey: 'teacherId' })
+      User.belongsToMany(User, {
+        through: models.Evaluation,
+        foreignKey: 'studentId',
+        as: 'Evaluate'
+      })
+      User.belongsToMany(User, {
+        through: models.Evaluation,
+        foreignKey: 'teacherId',
+        as: 'Evaluated'
+      })
     }
   }
   User.init({

@@ -25,6 +25,9 @@ const userController = {
   },
   getCourses: (req, res, next) => {
     userServices.getCourses(req, (err, data) => err ? next(err) : res.render('courses', data))
+  },
+  getCourse: (req, res, next) => {
+    userServices.getCourse(req, (err, data) => err ? next(err) : res.render('teacher_profile', data))
   }
 }
 

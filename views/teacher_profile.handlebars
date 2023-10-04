@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-4">
+    <img class="img-responsive center-block"
+      src="{{course.User.avatar}}"
+      style="width: 250px; margin-bottom: 25px; transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
+  </div>
+  <div class="col-md-8">
+    <h1>Name : {{course.User.name}}</h1>
+    <h2>Country : {{course.User.country}}</h2>
+  </div>
+  <form action="">
+    <div class="form-row mb-3 w-25">
+      <label class="form-label" for="categoryId">預約上課</label>
+      <select class="form-control" id="categoryId" name="categoryId">
+        {{#each period}}
+        <option value="{{@key}}">{{this}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+  </form>
+  <hr>
+</div>
+<div class="row" style="text-align: left;">
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-header">
+        Introduction
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{course.User.introduction}}</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        Teaching Style
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{course.User.teachingStyle}}</p>
+      </div>
+    </div>
+      <div class="card">
+        <div class="card-header">
+          Lesson History
+        </div>
+        {{#each evaluation}}
+        <div class="d-flex flex-row bd-highlight ">
+          <div class="badge bg-danger h-25 mx-1">
+            <i class="fas fa-star fa-xs">{{this.score}}</i>
+          </div>
+          <p>{{this.comment}}</p>
+        </div>
+        {{/each}}
+      </div>
+  </div>
+</div>
+
+
+<a class="btn btn-outline-secondary" href="javascript:history.back()">Back</a>
