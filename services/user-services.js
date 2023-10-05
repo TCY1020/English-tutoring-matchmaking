@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs')
 const { Op } = require('sequelize')
 const sequelize = require('sequelize')
+const { date } = require('../helpers/day-helper')
 const { periodCut } = require('../helpers/period-cutter')
 const { User, Course, Booking, Evaluation } = require('../models')
 
@@ -34,15 +35,19 @@ const userServices = {
     try {
       const { keyword } = req.query
       const courses = await Course.findAll({
+        where: { startTime: { [Op.gt]: Date.now() } },
         include: [
           { model: User, where: { ...keyword ? { name: { [Op.substring]: `${keyword}` } } : {} }, attributes: ['avatar', 'name', 'country', 'teachingStyle'] }
         ],
         raw: true,
         nest: true
       })
-      // console.log({ courses, keyword })
+      const coursesData = courses.map(course => ({
+        ...course,
+        courseDate: date(course.startTime)
+      }))
       cb(null, {
-        courses,
+        coursesData,
         keyword
       })
     } catch (err) {
