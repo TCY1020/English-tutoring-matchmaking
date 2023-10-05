@@ -13,8 +13,9 @@ router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/signin' }), userController.postSignIn)
 router.get('/logout', userController.logout)
 
-router.get('/user/course', authenticated, authenticatedStudent, userController.getCourses)
 router.get('/user/course/:id', authenticated, authenticatedStudent, userController.getCourse)
+router.post('/user/course/booking', authenticated, authenticatedStudent, userController.postBooking)
+router.get('/user/course', authenticated, authenticatedStudent, userController.getCourses)
 router.get('/', (req, res) => res.redirect('/user/course'))
 router.use('/', generalErrorHandler)
 

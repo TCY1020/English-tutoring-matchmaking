@@ -8,15 +8,16 @@
     <h1>Name : {{teacher.User.name}}</h1>
     <h2>Country : {{teacher.User.country}}</h2>
   </div>
-  <form action="">
+  <form id="myForm" action="/user/course/booking" method="POST">
     <div class="form-row mb-3 w-25">
       <label class="form-label" for="categoryId">預約上課</label>
-      <select class="form-control" id="categoryId" name="categoryId">
+      <select class="form-control" id="timePeriod" name="timePeriod">
         {{#each period}}
         <option value="{{@key}}">{{this}}</option>
         {{/each}}
       </select>
     </div>
+    <input type="hidden" name="courseId" value="{{teacher.id}}">
     <button type="submit" class="btn btn-primary mb-3">Submit</button>
   </form>
   <hr>

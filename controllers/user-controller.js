@@ -28,6 +28,13 @@ const userController = {
   },
   getCourse: (req, res, next) => {
     userServices.getCourse(req, (err, data) => err ? next(err) : res.render('teacher_profile', data))
+  },
+  postBooking: (req, res, next) => {
+    userServices.postBooking(req, (err, data) => {
+      if (err) return next(err)
+      req.flash('success_messages', `上課時段 : ${data.timePeriod} 老師 : ${data.name} 視訊連結 : ${data.link}`)
+      res.redirect('back')
+    })
   }
 }
 

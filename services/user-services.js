@@ -68,12 +68,48 @@ const userServices = {
       course.forEach((index) => {
         evaluation.push({ comment: index.User.Evaluations.comment, score: index.User.Evaluations.score })
       })
+      if (!course) throw new Error('課程不存在')
+      const period = periodCut(teacher.startTime, teacher.endTime, teacher.spendTime)
       // console.log('原始資料', course)
       // console.log('老師資料', teacher)
       // console.log('評價', evaluation)
-      if (!course) throw new Error('課程不存在')
-      const period = periodCut(teacher.startTime, teacher.endTime, teacher.spendTime)
+      // console.log('上課時段', period)
       cb(null, { teacher, evaluation, period })
+    } catch (err) {
+      cb(err)
+    }
+  },
+  postBooking: async (req, cb) => {
+    try {
+      const { courseId, timePeriod } = req.body
+      const { id } = req.user
+      const repeatBooking = await Booking.findOne({
+        where: { courseId, timePeriod },
+        raw: true
+      })
+      if (repeatBooking) throw new Error('課程已被預約過')
+      let booking = await Booking.create({
+        courseId,
+        studentId: id,
+        timePeriod
+      })
+      booking = booking.toJSON()
+      const teacher = await Course.findOne({
+        where: { id: booking.courseId },
+        include: [
+          User
+        ],
+        raw: true,
+        nest: true
+      })
+      const bookingInfo = {
+        timePeriod: periodCut(teacher.startTime, teacher.endTime, teacher.spendTime)[timePeriod],
+        name: teacher.User.name,
+        link: teacher.link
+
+      }
+      console.log(bookingInfo)
+      cb(null, bookingInfo)
     } catch (err) {
       cb(err)
     }
