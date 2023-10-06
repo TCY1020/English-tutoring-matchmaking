@@ -38,8 +38,6 @@ const userController = {
   },
   getStudent: (req, res, next) => {
     userServices.getStudent(req, (err, data) => err ? next(err) : res.render('student_profile', data))
-    // userServices.getStudent(req)
-    // res.render('student_profile')
   },
   getComment: (req, res, next) => {
     userServices.getComment(req, (err, data) => err ? next(err) : res.render('comment', data))
@@ -52,6 +50,9 @@ const userController = {
       req.flash('success_messages', '評價成功')
       res.redirect(`/user/${data.studentId}`)
     })
+  },
+  getStudentEdit: (req, res, next) => {
+    userServices.getStudentEdit(req, (err, data) => err ? next(err) : res.render('student_edit', data))
   }
 }
 

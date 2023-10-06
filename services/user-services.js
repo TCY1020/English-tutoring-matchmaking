@@ -76,10 +76,6 @@ const userServices = {
       })
       if (!course) throw new Error('課程不存在')
       const period = periodCut(teacher.startTime, teacher.endTime, teacher.spendTime)
-      // console.log('原始資料', course)
-      // console.log('老師資料', teacher)
-      // console.log('評價', evaluation)
-      // console.log('上課時段', period)
       cb(null, { teacher, evaluation, period })
     } catch (err) {
       cb(err)
@@ -123,6 +119,8 @@ const userServices = {
   getStudent: async (req, cb) => {
     try {
       const { id } = req.params
+      const userId = req.user.id
+      if (Number(id) !== userId) throw new Error('無權進入')
       const student = await User.findByPk(id, { raw: true })
       if (!student) throw new Error('使用者不存在')
       const booking = await Booking.findAll({
@@ -145,6 +143,7 @@ const userServices = {
         nest: true
       })
       const uncomments = comments.filter((index) => index.Evaluation.comment === null)
+      console.log(booking)
       cb(null, { student, booking, uncomments })
     } catch (err) {
       cb(err)
@@ -180,6 +179,18 @@ const userServices = {
       evaluation = evaluation.toJSON()
       console.log(evaluation)
       cb(null, evaluation)
+    } catch (err) {
+      cb(err)
+    }
+  },
+  getStudentEdit: async (req, cb) => {
+    try {
+      const { id } = req.params
+      const userId = req.user.id
+      if (Number(id) !== userId) throw new Error('無權進入')
+      const user = await User.findByPk(id, { raw: true })
+      if (!user) throw new Error('使用者不存在')
+      cb(null, user)
     } catch (err) {
       cb(err)
     }
