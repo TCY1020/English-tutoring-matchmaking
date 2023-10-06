@@ -133,9 +133,18 @@ const userServices = {
         raw: true,
         nest: true
       })
-      console.log(booking)
-      // console.log(booking[0].Course.User)
-      cb(null, { student, booking })
+      const comments = await Booking.findAll({
+        where: { studentId: student.id },
+        include: [
+          { model: Course, where: { startTime: { [Op.lt]: Date.now() } } },
+          { model: Course, where: { startTime: { [Op.lt]: Date.now() } }, include: User },
+          { model: Evaluation }
+        ],
+        raw: true,
+        nest: true
+      })
+      const uncomments = comments.filter((index) => index.Evaluation.comment === null)
+      cb(null, { student, booking, uncomments })
     } catch (err) {
       cb(err)
     }
