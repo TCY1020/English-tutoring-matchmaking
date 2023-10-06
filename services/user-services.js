@@ -40,7 +40,8 @@ const userServices = {
           { model: User, where: { ...keyword ? { name: { [Op.substring]: `${keyword}` } } : {} }, attributes: ['avatar', 'name', 'country', 'teachingStyle'] }
         ],
         raw: true,
-        nest: true
+        nest: true,
+        order: [['startTime', 'ASC']]
       })
       const coursesData = courses.map(course => ({
         ...course,

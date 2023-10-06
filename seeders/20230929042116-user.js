@@ -19,7 +19,7 @@ module.exports = {
       role: 'student',
       country: faker.location.county(),
       introduction: faker.lorem.sentence({ min: 10, max: 30 }),
-      avatar: faker.image.avatar(),
+      avatar: `https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * 50)}.jpg`,
       created_at: new Date(),
       updated_at: new Date()
     }, {
@@ -30,7 +30,7 @@ module.exports = {
       role: 'student',
       country: faker.location.county(),
       introduction: faker.lorem.sentence({ min: 10, max: 30 }),
-      avatar: faker.image.avatar(),
+      avatar: `https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * 50)}.jpg`,
       created_at: new Date(),
       updated_at: new Date()
     }, {
@@ -41,7 +41,7 @@ module.exports = {
       role: 'student',
       country: faker.location.county(),
       introduction: faker.lorem.sentence({ min: 10, max: 30 }),
-      avatar: faker.image.avatar(),
+      avatar: `https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * 50)}.jpg`,
       created_at: new Date(),
       updated_at: new Date()
     }, {
@@ -53,7 +53,7 @@ module.exports = {
       country: faker.location.county(),
       introduction: faker.lorem.sentence({ min: 10, max: 30 }),
       teaching_style: faker.lorem.sentence({ min: 10, max: 30 }),
-      avatar: faker.image.avatar(),
+      avatar: `https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * 50)}.jpg`,
       created_at: new Date(),
       updated_at: new Date()
     }, {
@@ -65,7 +65,7 @@ module.exports = {
       country: faker.location.county(),
       introduction: faker.lorem.sentence({ min: 10, max: 30 }),
       teaching_style: faker.lorem.sentence({ min: 10, max: 30 }),
-      avatar: faker.image.avatar(),
+      avatar: `https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * 50)}.jpg`,
       created_at: new Date(),
       updated_at: new Date()
     }])
