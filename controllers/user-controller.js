@@ -35,6 +35,11 @@ const userController = {
       req.flash('success_messages', `上課時段 : ${data.timePeriod} 老師 : ${data.name} 視訊連結 : ${data.link}`)
       res.redirect('back')
     })
+  },
+  getStudent: (req, res, next) => {
+    userServices.getStudent(req, (err, data) => err ? next(err) : res.render('student_profile', data))
+    // userServices.getStudent(req)
+    // res.render('student_profile')
   }
 }
 

@@ -8,10 +8,11 @@ const flash = require('connect-flash')
 const passport = require('./config/passport')
 const session = require('express-session')
 const { getUser } = require('./helpers/auth-helper')
+const handlebarsHelpers = require('./helpers/handlebars-helpers')
 const app = express()
 const port = process.env.PORT || 3000
 
-app.engine('handlebars', engine())
+app.engine('handlebars', engine({ helpers: handlebarsHelpers }))
 app.set('view engine', 'handlebars')
 app.use(express.urlencoded({ extended: true }))
 

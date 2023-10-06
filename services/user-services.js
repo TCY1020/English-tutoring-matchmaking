@@ -118,6 +118,27 @@ const userServices = {
     } catch (err) {
       cb(err)
     }
+  },
+  getStudent: async (req, cb) => {
+    try {
+      const { id } = req.params
+      const student = await User.findByPk(id, { raw: true })
+      if (!student) throw new Error('使用者不存在')
+      const booking = await Booking.findAll({
+        where: { studentId: student.id },
+        include: [
+          { model: Course, where: { startTime: { [Op.gt]: Date.now() } } },
+          { model: Course, where: { startTime: { [Op.gt]: Date.now() } }, include: User }
+        ],
+        raw: true,
+        nest: true
+      })
+      console.log(booking)
+      // console.log(booking[0].Course.User)
+      cb(null, { student, booking })
+    } catch (err) {
+      cb(err)
+    }
   }
 }
 
