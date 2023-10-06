@@ -148,6 +148,40 @@ const userServices = {
     } catch (err) {
       cb(err)
     }
+  },
+  getComment: async (req, cb) => {
+    try {
+      const { bookingId } = req.params
+      const booking = await Booking.findByPk(bookingId, {
+        include: [Course],
+        raw: true,
+        nest: true
+      })
+      if (!booking) throw new Error('課程不存在')
+      cb(null, { booking })
+    } catch (err) {
+      cb(err)
+    }
+  },
+  postComment: async (req, cb) => {
+    try {
+      const { score, comment, bookingId, teacherId } = req.body
+      const { id } = req.user
+      const booking = await Booking.findByPk(bookingId, { raw: true })
+      if (!booking) throw new Error('課程不存在')
+      let evaluation = await Evaluation.create({
+        studentId: id,
+        teacherId,
+        bookingId,
+        comment,
+        score
+      })
+      evaluation = evaluation.toJSON()
+      console.log(evaluation)
+      cb(null, evaluation)
+    } catch (err) {
+      cb(err)
+    }
   }
 }
 

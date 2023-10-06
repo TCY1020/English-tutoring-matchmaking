@@ -40,6 +40,18 @@ const userController = {
     userServices.getStudent(req, (err, data) => err ? next(err) : res.render('student_profile', data))
     // userServices.getStudent(req)
     // res.render('student_profile')
+  },
+  getComment: (req, res, next) => {
+    userServices.getComment(req, (err, data) => err ? next(err) : res.render('comment', data))
+    // userServices.getComment(req)
+    // res.render('comment')
+  },
+  postComment: (req, res, next) => {
+    userServices.postComment(req, (err, data) => {
+      if (err) return next(err)
+      req.flash('success_messages', '評價成功')
+      res.redirect(`/user/${data.studentId}`)
+    })
   }
 }
 

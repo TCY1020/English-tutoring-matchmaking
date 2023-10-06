@@ -1,0 +1,21 @@
+<div class="mb-4 text-center">
+  <h1 class="h3 font-weight-normal mb-3">分享本次的課程體驗</h1>
+</div>
+<form class="form-signin" action="/user/comment" method="POST">
+  <div class="form-row mb-3">
+    <label class="form-label" for="score">Score</label>
+    <input class="form-control" id="score" type="number" name="score" class="form-control" min="0.0" max="5.0" placeholder="0.0 ~ 5.0" required
+      autofocus>
+  </div>
+  <div class="form-row mb-3">
+    <label class="form-label" for="comment">Comment</label>
+    <input class="form-control" id="comment" type="text" name="comment" class="form-control"
+      placeholder="Comment" required>
+  </div>
+  <input type="hidden" name="bookingId" value="{{booking.id}}">
+  <input type="hidden" name="teacherId" value="{{booking.Course.teacherId}}">
+  <button class="btn btn-primary btn-block" type="submit">Submit</button>
+</form>
+<div class="mb-4 text-center">
+  <a class="btn btn-outline-secondary" href="javascript:history.back()">Back</a>
+</div>
