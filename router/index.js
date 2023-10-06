@@ -16,7 +16,7 @@ router.get('/logout', userController.logout)
 router.get('/user/course/:id', authenticated, authenticatedStudent, userController.getCourse)
 router.post('/user/course/booking', authenticated, authenticatedStudent, userController.postBooking)
 router.get('/user/course', authenticated, authenticatedStudent, userController.getCourses)
-router.get('/user/:id', userController.getStudent)
+router.get('/user/:id', authenticated, authenticatedStudent, userController.getStudent)
 router.get('/', (req, res) => res.redirect('/user/course'))
 router.use('/', generalErrorHandler)
 
