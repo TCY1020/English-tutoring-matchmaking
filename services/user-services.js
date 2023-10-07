@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const { Op } = require('sequelize')
 const sequelize = require('sequelize')
 const { date } = require('../helpers/day-helper')
+const { imgurFileHandler } = require('../helpers/file-helper')
 const { periodCut } = require('../helpers/period-cutter')
 const { User, Course, Booking, Evaluation } = require('../models')
 
@@ -191,6 +192,30 @@ const userServices = {
       const user = await User.findByPk(id, { raw: true })
       if (!user) throw new Error('使用者不存在')
       cb(null, user)
+    } catch (err) {
+      cb(err)
+    }
+  },
+  putStudentEdit: async (req, cb) => {
+    try {
+      const { id } = req.params
+      const userId = req.user.id
+      if (Number(id) !== userId) throw new Error('無權修改')
+      const { name, introduction, country } = req.body
+      const { file } = req
+      const [user, filePath] = await Promise.all([
+        User.findByPk(id),
+        imgurFileHandler(file)
+      ])
+      console.log('問題')
+      if (!user) throw new Error('使用者不存在')
+      const updateUser = await user.update({
+        name,
+        introduction,
+        country,
+        avatar: filePath || user.image
+      })
+      cb(null, updateUser)
     } catch (err) {
       cb(err)
     }

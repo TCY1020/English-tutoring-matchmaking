@@ -1,7 +1,7 @@
 <div class="mb-4 text-center">
   <h1 class="h3 font-weight-normal mb-3">Profile</h1>
 </div>
-<form action="/users/{{user.id}}?_method=PUT" method="POST" enctype="multipart/form-data" style="width: 100%;">
+<form action="/user/{{user.id}}/edit?_method=PUT" method="POST" enctype="multipart/form-data" style="width: 100%;">
   <div class="form-row mb-3">
     <label class="form-label" for="name">Name</label>
     <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{{user.name}}" required
@@ -23,6 +23,10 @@
       <textarea class="form-control" id="teachingStyle" name="teachingStyle" rows="3" required autofocus>{{user.teachingStyle}}</textarea>
     </div>
     {{/ifCond}}
+  <div class="form-row mb-3">
+    <label class="form-label" for="name">Country</label>
+    <input type="text" id="country" name="country" class="form-control" placeholder="Name" value="{{user.country}}">
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
   <a class="btn btn-outline-secondary" href="javascript:history.back()">Back</a>
 </form>

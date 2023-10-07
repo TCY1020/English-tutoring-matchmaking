@@ -48,11 +48,18 @@ const userController = {
     userServices.postComment(req, (err, data) => {
       if (err) return next(err)
       req.flash('success_messages', '評價成功')
-      res.redirect(`/user/${data.studentId}`)
+      res.redirect(`/user/${req.user.id}`)
     })
   },
   getStudentEdit: (req, res, next) => {
     userServices.getStudentEdit(req, (err, data) => err ? next(err) : res.render('student_edit', data))
+  },
+  putStudentEdit: (req, res, next) => {
+    userServices.putStudentEdit(req, (err, data) => {
+      if (err) return next(err)
+      req.flash('success_messages', '資料修改成功')
+      res.redirect(`/user/${req.user.id}`)
+    })
   }
 }
 
