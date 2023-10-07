@@ -58,11 +58,11 @@ const userServices = {
   getCourse: async (req, cb) => {
     try {
       const { id } = req.params
+      console.log('問題', User.associations)
       const course = await Course.findAll({
         where: { id },
         include: [
-          User,
-          { model: User, include: Evaluation }
+          { model: User, include: [{ model: Evaluation, as: 'TeacherEvaluations' }] }
         ],
         raw: true,
         nest: true
@@ -72,7 +72,7 @@ const userServices = {
       }
       const evaluation = []
       course.forEach((index) => {
-        evaluation.push({ comment: index.User.Evaluations.comment, score: index.User.Evaluations.score })
+        evaluation.push({ comment: index.User.TeacherEvaluations.comment, score: index.User.TeacherEvaluations.score })
       })
       if (!course) throw new Error('課程不存在')
       const period = periodCut(teacher.startTime, teacher.endTime, teacher.spendTime)
