@@ -11,6 +11,11 @@
       <a href="/user/{{user.id}}">
         <span class="text-white nav-link">Hi, {{ user.name }}</span>
       </a>
+      {{#ifCond "student" user.role}}
+      <a href="/user/{{user.id}}/applyTeacher">
+        <span class="text-white nav-link">成為老師</span>
+      </a>
+      {{/ifCond}}
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ms-auto mb-2 mb-md-0">
           <li class="nav-item">

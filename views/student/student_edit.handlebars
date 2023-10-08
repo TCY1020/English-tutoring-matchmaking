@@ -11,21 +11,13 @@
     <label class="form-label" for="image">Image</label>
     <input class="form-control" type="file" class="form-control-file" id="image" name="image">
   </div>
-  {{#ifCond 'student' user.role }}
   <div class="form-row mb-3">
     <label class="form-label" for="introduction">Introduction</label>
     <textarea class="form-control" id="introduction" name="introduction" rows="3"required autofocus>{{user.introduction}}</textarea>
   </div>
-  {{/ifCond}}
-    {{#ifCond 'teacher' user.role }}
-    <div class="form-row mb-3">
-      <label class="form-label" for="teachingStyle">Teaching style</label>
-      <textarea class="form-control" id="teachingStyle" name="teachingStyle" rows="3" required autofocus>{{user.teachingStyle}}</textarea>
-    </div>
-    {{/ifCond}}
   <div class="form-row mb-3">
-    <label class="form-label" for="name">Country</label>
-    <input type="text" id="country" name="country" class="form-control" placeholder="Name" value="{{user.country}}">
+    <label class="form-label" for="country">Country</label>
+    <input type="text" id="country" name="country" class="form-control" placeholder="Country" value="{{user.country}}">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
   <a class="btn btn-outline-secondary" href="javascript:history.back()">Back</a>

@@ -59,7 +59,6 @@ const userServices = {
   getCourse: async (req, cb) => {
     try {
       const { id } = req.params
-      console.log('問題', User.associations)
       const course = await Course.findAll({
         where: { id },
         include: [
@@ -216,6 +215,20 @@ const userServices = {
         avatar: filePath || user.image
       })
       cb(null, updateUser)
+    } catch (err) {
+      cb(err)
+    }
+  },
+  getApplyTeacherPage: async (req, cb) => {
+    try {
+      const { id } = req.params
+      const userId = req.user.id
+      console.log('id', id)
+      console.log('userId', userId)
+      if (Number(id) !== userId) throw new Error('無權進入')
+      const user = await User.findByPk(id, { raw: true })
+      if (!user) throw new Error('使用者不存在')
+      cb(null, user)
     } catch (err) {
       cb(err)
     }

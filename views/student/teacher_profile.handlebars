@@ -10,7 +10,7 @@
   </div>
   <form id="myForm" action="/user/course/booking" method="POST">
     <div class="form-row mb-3 w-25">
-      <label class="form-label" for="categoryId">預約上課</label>
+      <label class="form-label" for="timePeriod">預約上課</label>
       <select class="form-control" id="timePeriod" name="timePeriod">
         {{#each period}}
         <option value="{{@key}}">{{this}}</option>

@@ -24,10 +24,10 @@ const userController = {
     res.redirect('/signin')
   },
   getCourses: (req, res, next) => {
-    userServices.getCourses(req, (err, data) => err ? next(err) : res.render('courses', data))
+    userServices.getCourses(req, (err, data) => err ? next(err) : res.render('student/courses', data))
   },
   getCourse: (req, res, next) => {
-    userServices.getCourse(req, (err, data) => err ? next(err) : res.render('teacher_profile', data))
+    userServices.getCourse(req, (err, data) => err ? next(err) : res.render('student/teacher_profile', data))
   },
   postBooking: (req, res, next) => {
     userServices.postBooking(req, (err, data) => {
@@ -37,10 +37,10 @@ const userController = {
     })
   },
   getStudent: (req, res, next) => {
-    userServices.getStudent(req, (err, data) => err ? next(err) : res.render('student_profile', data))
+    userServices.getStudent(req, (err, data) => err ? next(err) : res.render('student/student_profile', data))
   },
   getComment: (req, res, next) => {
-    userServices.getComment(req, (err, data) => err ? next(err) : res.render('comment', data))
+    userServices.getComment(req, (err, data) => err ? next(err) : res.render('student/comment', data))
     // userServices.getComment(req)
     // res.render('comment')
   },
@@ -52,7 +52,7 @@ const userController = {
     })
   },
   getStudentEdit: (req, res, next) => {
-    userServices.getStudentEdit(req, (err, data) => err ? next(err) : res.render('student_edit', data))
+    userServices.getStudentEdit(req, (err, data) => err ? next(err) : res.render('student/student_edit', data))
   },
   putStudentEdit: (req, res, next) => {
     userServices.putStudentEdit(req, (err, data) => {
@@ -60,6 +60,9 @@ const userController = {
       req.flash('success_messages', '資料修改成功')
       res.redirect(`/user/${req.user.id}`)
     })
+  },
+  getApplyTeacherPage: (req, res, next) => {
+    userServices.getApplyTeacherPage(req, (err, data) => err ? next(err) : res.render('teacher/apply_teacher', data))
   }
 }
 
