@@ -1,9 +1,8 @@
 const bcrypt = require('bcryptjs')
 const { Op } = require('sequelize')
 const sequelize = require('sequelize')
-const { date } = require('../helpers/day-helper')
+const { date, periodCut, nextWeekStar, weekPlanDate } = require('../helpers/day-helper')
 const { imgurFileHandler } = require('../helpers/file-helper')
-const { periodCut } = require('../helpers/period-cutter')
 const { User, Course, Booking, Evaluation } = require('../models')
 
 const userServices = {
@@ -110,7 +109,6 @@ const userServices = {
         link: teacher.link
 
       }
-      console.log(bookingInfo)
       cb(null, bookingInfo)
     } catch (err) {
       cb(err)
@@ -143,7 +141,6 @@ const userServices = {
         nest: true
       })
       const uncomments = comments.filter((index) => index.Evaluation.comment === null)
-      console.log(booking)
       cb(null, { student, booking, uncomments })
     } catch (err) {
       cb(err)
@@ -177,7 +174,6 @@ const userServices = {
         score
       })
       evaluation = evaluation.toJSON()
-      console.log(evaluation)
       cb(null, evaluation)
     } catch (err) {
       cb(err)
@@ -206,7 +202,6 @@ const userServices = {
         User.findByPk(id),
         imgurFileHandler(file)
       ])
-      console.log('問題')
       if (!user) throw new Error('使用者不存在')
       const updateUser = await user.update({
         name,
@@ -223,12 +218,42 @@ const userServices = {
     try {
       const { id } = req.params
       const userId = req.user.id
-      console.log('id', id)
-      console.log('userId', userId)
       if (Number(id) !== userId) throw new Error('無權進入')
       const user = await User.findByPk(id, { raw: true })
       if (!user) throw new Error('使用者不存在')
       cb(null, user)
+    } catch (err) {
+      cb(err)
+    }
+  },
+  postApplyTeacherPage: async (req, cb) => {
+    try {
+      const { introduction, teachingStyle, spendTime, days, courseName, link, startTime, endTime } = req.body
+      if (!introduction || !teachingStyle || !spendTime || !days || !courseName || !link || !startTime || !endTime) { throw new Error('全部都是必填') }
+      const { id } = req.user
+      const today = new Date()
+      const user = await User.findByPk(id)
+      if (!user) throw new Error('使用者不存在')
+      const weekStarDate = await nextWeekStar(today)
+      const theTime = await weekPlanDate(startTime, endTime, days, weekStarDate)
+      await user.update({
+        introduction,
+        teachingStyle,
+        role: 'teacher'
+      })
+      await Promise.all(
+        Array.from({ length: theTime.length }, (_, time) => (
+          Course.create({
+            teacherId: id,
+            spendTime,
+            courseName,
+            link,
+            startTime: theTime[time].start,
+            endTime: theTime[time].end
+          })
+        ))
+      )
+      cb(null)
     } catch (err) {
       cb(err)
     }

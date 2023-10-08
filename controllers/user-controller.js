@@ -16,7 +16,9 @@ const userController = {
   },
   postSignIn: (req, res) => {
     req.flash('success_messages', '成功登入！')
-    res.redirect('/user/course')
+    const { role, id } = req.user
+    if (role === 'teacher') res.redirect(`/user/${id}/teacher`)
+    if (role === 'student') res.redirect('/user/course')
   },
   logout: (req, res) => {
     req.flash('success_messages', '登出成功!')
@@ -63,6 +65,14 @@ const userController = {
   },
   getApplyTeacherPage: (req, res, next) => {
     userServices.getApplyTeacherPage(req, (err, data) => err ? next(err) : res.render('teacher/apply_teacher', data))
+  },
+  postApplyTeacherPage: (req, res, next) => {
+    userServices.postApplyTeacherPage(req, (err, data) => {
+      if (err) return next(err)
+      req.flash('success_messages', '申請成功')
+      res.redirect(`/user/${req.user.id}/teacher`)
+    })
+    // userServices.postApplyTeacherPage(req)
   }
 }
 
