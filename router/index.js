@@ -15,6 +15,7 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', { failur
 router.get('/logout', userController.logout)
 
 router.get('/user/:id/teacher', authenticated, authenticatedTeacher, userController.getTeacher)
+router.get('/user/:id/teacher/edit', authenticated, authenticatedTeacher, userController.getTeacherEdit)
 
 router.get('/user/course/:id', authenticated, authenticatedStudent, userController.getCourse)
 router.post('/user/course/booking', authenticated, authenticatedStudent, userController.postBooking)

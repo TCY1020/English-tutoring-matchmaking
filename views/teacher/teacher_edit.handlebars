@@ -1,7 +1,7 @@
 <div class="mb-4 text-center">
-  <h1 class="h3 font-weight-normal mb-3">Apply Teacher</h1>
+  <h1 class="h3 font-weight-normal mb-3">Teacher Profile & Booking Calender</h1>
 </div>
-<form action="/user/{{user.id}}/applyTeacher?_method=PUT" method="POST" enctype="multipart/form-data" style="width: 100%;">
+<form action="/user/{{user.id}}/teacher/edit" method="POST" style="width: 100%;">
   <div class="form-row mb-3">
     <label class="form-label" for="name">Name</label>
     <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{{user.name}}" required
@@ -11,5 +11,5 @@
     <label class="form-label" for="image">Image</label>
     <input class="form-control" type="file" class="form-control-file" id="image" name="image">
   </div>
-{{> teacher_from}}
+  {{> teacher_from}}
 </form>

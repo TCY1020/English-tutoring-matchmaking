@@ -75,6 +75,9 @@ const userController = {
   },
   getTeacher: (req, res, next) => {
     userServices.getTeacher(req, (err, data) => err ? next(err) : res.render('teacher/teacher_profile', data))
+  },
+  getTeacherEdit: (req, res, next) => {
+    userServices.getTeacherEdit(req, (err, data) => err ? next(err) : res.render('teacher/teacher_edit', data))
   }
 }
 

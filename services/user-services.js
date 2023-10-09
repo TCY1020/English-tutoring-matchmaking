@@ -312,6 +312,18 @@ const userServices = {
     } catch (err) {
       cb(err)
     }
+  },
+  getTeacherEdit: async (req, cb) => {
+    try {
+      const { id } = req.params
+      const userId = req.user.id
+      if (Number(id) !== userId) throw new Error('無權進入')
+      const user = await User.findByPk(id, { raw: true })
+      if (!user) throw new Error('使用者不存在')
+      cb(null, user)
+    } catch (err) {
+      cb(err)
+    }
   }
 }
 
