@@ -6,14 +6,15 @@
   </div>
   <div class="col-md-8">
     <h1>Name : {{teacher.User.name}}</h1>
-    <h2>Country : {{teacher.User.country}}</h2>
+    <h3>Country : {{teacher.User.country}}</h3>
+    <h3>課程名稱 : {{teacher.courseName}}</h3>
   </div>
   <form id="myForm" action="/user/course/booking" method="POST">
     <div class="form-row mb-3 w-25">
-      <label class="form-label" for="timePeriod">預約上課</label>
+      <label class="form-label" for="timePeriod">預約上課 : {{relativeTimeFromNow teacher.startTime}}</label>
       <select class="form-control" id="timePeriod" name="timePeriod">
-        {{#each period}}
-        <option value="{{@key}}">{{this}}</option>
+        {{#each periods}}
+        <option value="{{this.no}}">{{this.time}}</option>
         {{/each}}
       </select>
     </div>

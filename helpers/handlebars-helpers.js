@@ -2,7 +2,7 @@ const dayjs = require('dayjs')
 
 module.exports = {
   currentYear: () => dayjs().year(),
-  relativeTimeFromNow: a => dayjs(a).format('YYYY年MM月DD日'),
+  relativeTimeFromNow: a => dayjs(a).format('YYYY年MM月DD日ddd'),
   periodCut: (startTime, endTime, spendTime, item) => {
     const start = startTime.getTime()
     const end = endTime.getTime()

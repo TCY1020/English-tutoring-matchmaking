@@ -34,8 +34,10 @@ const userServices = {
   getCourses: async (req, cb) => {
     try {
       const { keyword } = req.query
+      const twoWeeks = new Date()
+      twoWeeks.setDate(twoWeeks.getDate() + 14)
       const courses = await Course.findAll({
-        where: { startTime: { [Op.gt]: Date.now() } },
+        where: { startTime: { [Op.gt]: Date.now(), [Op.lt]: twoWeeks } },
         include: [
           { model: User, where: { ...keyword ? { name: { [Op.substring]: `${keyword}` } } : {} }, attributes: ['avatar', 'name', 'country', 'teachingStyle'] }
         ],
@@ -66,16 +68,39 @@ const userServices = {
         raw: true,
         nest: true
       })
+      if (!course) throw new Error('課程不存在')
       const teacher = {
         ...course[0]
       }
-      const evaluation = []
-      course.forEach((index) => {
-        evaluation.push({ comment: index.User.TeacherEvaluations.comment, score: index.User.TeacherEvaluations.score })
+
+      // 查詢預約過的時段
+      const booked = await Booking.findAll({
+        where: { courseId: id },
+        raw: true
       })
-      if (!course) throw new Error('課程不存在')
-      const period = periodCut(teacher.startTime, teacher.endTime, teacher.spendTime)
-      cb(null, { teacher, evaluation, period })
+      let bookedTimePeriod = booked.map(index => {
+        return Number(index.timePeriod)
+      })
+      bookedTimePeriod = bookedTimePeriod.sort((a, b) => b - a)
+
+      // 整理老師評價
+      const evaluation = course.map((index) => {
+        return {
+          comment: index.User.TeacherEvaluations.comment,
+          score: index.User.TeacherEvaluations.score
+        }
+      })
+      let periods = periodCut(teacher.startTime, teacher.endTime, teacher.spendTime)
+      periods = periods.map((time, item) => ({
+        no: item, time
+      }))
+      // 刪掉被預約的時段
+      if (booked) {
+        for (let i = 0; i < bookedTimePeriod.length; i++) {
+          periods.splice(bookedTimePeriod[i], 1)
+        }
+      }
+      cb(null, { teacher, evaluation, periods })
     } catch (err) {
       cb(err)
     }
