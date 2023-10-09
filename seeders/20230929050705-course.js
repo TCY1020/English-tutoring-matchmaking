@@ -21,7 +21,7 @@ module.exports = {
       const startDate = new Date()
       const endDate = new Date()
       startDate.setDate(startDate.getDate() + i)
-      startDate.setHours(2, 0, 0)
+      startDate.setHours(18, 0, 0)
       endDate.setDate(endDate.getDate() + i)
       endDate.setHours(startDate.getHours() + 4, 0, 0)
       workTime.push({

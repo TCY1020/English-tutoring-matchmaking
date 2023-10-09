@@ -1,0 +1,66 @@
+<div class="form-row mb-3">
+  <label class="form-label" for="introduction">Introduction</label>
+  <textarea class="form-control" id="introduction" name="introduction" rows="3" required
+    autofocus>{{user.introduction}}</textarea>
+</div>
+
+<div class="form-row mb-3">
+  <label class="form-label" for="teachingStyle">Teaching style</label>
+  <textarea class="form-control" id="teachingStyle" name="teachingStyle" rows="3" placeholder="Write here..." required
+    autofocus>{{user.teachingStyle}}</textarea>
+</div>
+<div class="form-row mb-3 w-25">
+  <label class="form-label" for="spendTime">單堂課程時間</label>
+  <select class="form-control" id="spendTime" name="spendTime">
+    <option value="0.5">30分鐘</option>
+    <option value="1">60分鐘</option>
+  </select>
+</div>
+<div class="form-row mb-3">
+  <label class="form-label" for="courseName">課程名稱</label>
+  <input type="text" id="courseName" name="courseName" class="form-control" placeholder="courseName..." required
+    autofocus>
+</div>
+<div class="form-row mb-3">
+  <label class="form-label" for="link">課程視訊連結</label>
+  <input type="text" id="link" name="link" class="form-control" placeholder="Link..." required autofocus>
+</div>
+
+<div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+  <input type="checkbox" class="btn-check" id="MON" autocomplete="off" value=0 name="days">
+  <label class="btn btn-outline-primary me-3" for="MON">星期一</label>
+
+  <input type="checkbox" class="btn-check" id="TUE" autocomplete="off" value=1 name="days">
+  <label class="btn btn-outline-primary me-3" for="TUE">星期二</label>
+
+  <input type="checkbox" class="btn-check" id="WED" autocomplete="off" value=2 name="days">
+  <label class="btn btn-outline-primary me-3" for="WED">星期三</label>
+
+  <input type="checkbox" class="btn-check" id="THU" autocomplete="off" value=3 name="days">
+  <label class="btn btn-outline-primary me-3" for="THU">星期四</label>
+
+  <input type="checkbox" class="btn-check" id="FRI" autocomplete="off" value=4 name="days">
+  <label class="btn btn-outline-primary me-3" for="FRI">星期五</label>
+
+  <input type="checkbox" class="btn-check" id="SAT" autocomplete="off" value=5 name="days">
+  <label class="btn btn-outline-primary me-3" for="SAT">星期六</label>
+
+  <input type="checkbox" class="btn-check" id="SUN" autocomplete="off" value=6 name="days">
+  <label class="btn btn-outline-primary me-3" for="SUN">星期日</label>
+</div>
+
+<div class="form-row mb-3">
+  <label class="form-label" for="startTime">開始時間</label>
+  <input class="form-control" type="time" name="startTime" id="startTime" placeholder="Enter opening hours" step="1800"
+    required autofocus>
+</div>
+
+<div class="form-row mb-3">
+  <label class="form-label" for="endTime">結束時間</label>
+  <input class="form-control" type="time" name="endTime" id="endTime" placeholder="Enter opening hours" step="1800"
+    required autofocus>
+</div>
+<div class="my-3">
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <a class="btn btn-outline-secondary" href="javascript:history.back()">Back</a>
+</div>

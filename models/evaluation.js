@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       Evaluation.belongsTo(models.Booking, { foreignKey: 'bookingId' })
-      Evaluation.belongsTo(models.User, { foreignKey: 'studentId' })
     }
   }
   Evaluation.init({
     studentId: DataTypes.INTEGER,
+    teacherId: DataTypes.INTEGER,
     bookingId: DataTypes.INTEGER,
     comment: DataTypes.STRING,
     score: DataTypes.FLOAT

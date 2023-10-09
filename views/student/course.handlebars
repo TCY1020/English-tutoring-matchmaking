@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-md-4">
+    <img class="img-responsive center-block"
+      src="{{teacher.User.avatar}}"
+      style="width: 250px; margin-bottom: 25px; transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
+  </div>
+  <div class="col-md-8">
+    <h1>Name : {{teacher.User.name}}</h1>
+    <h3>Country : {{teacher.User.country}}</h3>
+    <h3>課程名稱 : {{teacher.courseName}}</h3>
+  </div>
+  <form id="myForm" action="/user/course/booking" method="POST">
+    <div class="form-row mb-3 w-25">
+      <label class="form-label" for="timePeriod">預約上課 : {{relativeTimeFromNow teacher.startTime}}</label>
+      <select class="form-control" id="timePeriod" name="timePeriod">
+        {{#each periods}}
+        <option value="{{this.no}}">{{this.time}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <input type="hidden" name="courseId" value="{{teacher.id}}">
+    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+  </form>
+  <hr>
+</div>
+<div class="row" style="text-align: left;">
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-header">
+        Introduction
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{teacher.User.introduction}}</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        Teaching Style
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{teacher.User.teachingStyle}}</p>
+      </div>
+    </div>
+      <div class="card">
+        <div class="card-header">
+          Lesson History
+        </div>
+        {{#each evaluation}}
+        <div class="d-flex flex-row bd-highlight ">
+          <div class="badge bg-danger h-25 mx-1">
+            <i class="fas fa-star fa-xs">{{this.score}}</i>
+          </div>
+          <p>{{this.comment}}</p>
+        </div>
+        {{/each}}
+      </div>
+  </div>
+</div>
+
+
+<a class="btn btn-outline-secondary" href="javascript:history.back()">Back</a>

@@ -2,7 +2,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const FacebookStrategy = require('passport-facebook')
 const bcrypt = require('bcryptjs')
-const { User, Evaluation, Course } = require('../models')
+const { User, Evaluation, Course, Booking } = require('../models')
 
 passport.use(new LocalStrategy(
   {
@@ -52,8 +52,9 @@ passport.deserializeUser(async (id, cb) => {
   try {
     const user = await User.findByPk(id, {
       include: [
-        { model: Evaluation },
-        { model: Course }
+        { model: Evaluation, as: 'StudentEvaluations' },
+        { model: Course },
+        { model: Booking }
       ]
     })
     // console.log(user.toJSON())

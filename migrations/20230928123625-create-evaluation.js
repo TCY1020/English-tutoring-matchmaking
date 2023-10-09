@@ -12,6 +12,9 @@ module.exports = {
       student_id: {
         type: Sequelize.INTEGER
       },
+      teacher_id: {
+        type: Sequelize.INTEGER
+      },
       booking_id: {
         type: Sequelize.INTEGER
       },

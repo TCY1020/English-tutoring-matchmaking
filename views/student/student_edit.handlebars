@@ -1,0 +1,24 @@
+<div class="mb-4 text-center">
+  <h1 class="h3 font-weight-normal mb-3">Profile</h1>
+</div>
+<form action="/user/{{user.id}}/edit?_method=PUT" method="POST" enctype="multipart/form-data" style="width: 100%;">
+  <div class="form-row mb-3">
+    <label class="form-label" for="name">Name</label>
+    <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{{user.name}}" required
+      autofocus>
+  </div>
+  <div class="form-row mb-3">
+    <label class="form-label" for="image">Image</label>
+    <input class="form-control" type="file" class="form-control-file" id="image" name="image">
+  </div>
+  <div class="form-row mb-3">
+    <label class="form-label" for="introduction">Introduction</label>
+    <textarea class="form-control" id="introduction" name="introduction" rows="3"required autofocus>{{user.introduction}}</textarea>
+  </div>
+  <div class="form-row mb-3">
+    <label class="form-label" for="country">Country</label>
+    <input type="text" id="country" name="country" class="form-control" placeholder="Country" value="{{user.country}}">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <a class="btn btn-outline-secondary" href="javascript:history.back()">Back</a>
+</form>
