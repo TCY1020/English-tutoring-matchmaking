@@ -282,6 +282,36 @@ const userServices = {
     } catch (err) {
       cb(err)
     }
+  },
+  getTeacher: async (req, cb) => {
+    try {
+      const { id } = req.params
+      const userId = req.user.id
+      if (Number(id) !== userId) throw new Error('無權進入')
+      const user = await User.findByPk(id, { raw: true })
+      if (!user) throw new Error('使用者不存在')
+      const teacher = await User.findAll({
+        where: { id },
+        include: [
+          { model: Evaluation, as: 'TeacherEvaluations' }
+        ],
+        raw: true,
+        nest: true
+      })
+      const booked = await Course.findAll({
+        where: { teacherId: id, endTime: { [Op.gt]: Date.now() } },
+        include: [
+          Booking,
+          { model: Booking, include: User }
+        ],
+        raw: true,
+        nest: true
+      })
+      const dating = booked.filter(index => index.Bookings.id !== null)
+      cb(null, { teacher, dating })
+    } catch (err) {
+      cb(err)
+    }
   }
 }
 

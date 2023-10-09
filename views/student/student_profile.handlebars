@@ -13,7 +13,7 @@
       <div class="list-group-item">
         <ul>
           <li><strong>時間</strong> : 
-          {{ relativeTimeFromNow this.Course.startTime}} 
+          {{relativeTimeFromNow this.Course.startTime}} 
           {{periodCut this.Course.startTime this.Course.endTime this.Course.spendTime timePeriod}}
           </li>
           <li><strong>老師</strong> : {{this.Course.User.name}}</li>

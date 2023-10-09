@@ -29,7 +29,7 @@ const userController = {
     userServices.getCourses(req, (err, data) => err ? next(err) : res.render('student/courses', data))
   },
   getCourse: (req, res, next) => {
-    userServices.getCourse(req, (err, data) => err ? next(err) : res.render('student/teacher_profile', data))
+    userServices.getCourse(req, (err, data) => err ? next(err) : res.render('student/course', data))
   },
   postBooking: (req, res, next) => {
     userServices.postBooking(req, (err, data) => {
@@ -72,7 +72,9 @@ const userController = {
       req.flash('success_messages', '申請成功')
       res.redirect(`/user/${req.user.id}/teacher`)
     })
-    // userServices.postApplyTeacherPage(req)
+  },
+  getTeacher: (req, res, next) => {
+    userServices.getTeacher(req, (err, data) => err ? next(err) : res.render('teacher/teacher_profile', data))
   }
 }
 

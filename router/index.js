@@ -14,13 +14,15 @@ router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/signin' }), userController.postSignIn)
 router.get('/logout', userController.logout)
 
+router.get('/user/:id/teacher', authenticated, authenticatedTeacher, userController.getTeacher)
+
 router.get('/user/course/:id', authenticated, authenticatedStudent, userController.getCourse)
 router.post('/user/course/booking', authenticated, authenticatedStudent, userController.postBooking)
 router.get('/user/course', authenticated, authenticatedStudent, userController.getCourses)
 router.get('/user/:id/applyTeacher', authenticated, authenticatedStudent, userController.getApplyTeacherPage)
 router.post('/user/:id/applyTeacher', authenticated, authenticatedStudent, userController.postApplyTeacherPage)
-router.get('/user/:id/edit', userController.getStudentEdit)
-router.put('/user/:id/edit', upload.single('image'), userController.putStudentEdit)
+router.get('/user/:id/edit', authenticated, authenticatedStudent, userController.getStudentEdit)
+router.put('/user/:id/edit', authenticated, authenticatedStudent, upload.single('image'), userController.putStudentEdit)
 router.post('/user/comment', authenticated, authenticatedStudent, userController.postComment)
 router.get('/user/:bookingId/comment', authenticated, authenticatedStudent, userController.getComment)
 router.get('/user/:id', authenticated, authenticatedStudent, userController.getStudent)

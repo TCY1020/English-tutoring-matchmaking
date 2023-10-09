@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-4">
+    <img class="img-responsive center-block" src="{{user.avatar}}"
+      style="width: 250px; margin-bottom: 25px; transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
+    <h2>Name : {{user.name}}</h1>
+      <h2>Country : {{user.country}}</h2>
+      <h2>About me :</h3>
+        <p>{{user.introduction}}</p>
+  </div>
+  <div class="col-md-8 ">
+    <h3>已預約課程</h3>
+    {{#each dating}}
+    <div class="list-group-item">
+      <ul>
+        <li><strong>時間</strong> :
+          {{relativeTimeFromNow this.startTime}}
+          {{periodCut this.startTime this.endTime this.spendTime this.Bookings.timePeriod}}
+        </li>
+        <li><strong>學生名稱</strong> : {{this.Bookings.User.name}}</li>
+        <li><strong>課程名稱</strong> : {{this.courseName}}</li>
+        <li><strong>Link</strong> : <a href="{{this.link}}">{{this.link}}</a></li>
+      </ul>
+    </div>
+    {{/each}}
+    <div class="mb-8 my-3">
+      <h3 class="my-3">Teaching Style : </h3>
+      <p>{{user.teachingStyle}}</p>
+    </div>
+
+    <div class="mb-8 my-3">
+      <h3 class="my-3">學生評價 : </h3>
+      {{#each teacher}}
+      <div class="d-flex flex-row bd-highlight ">
+        <div class="badge bg-danger h-25 mx-1">
+          <i class="fas fa-star fa-xs">{{this.TeacherEvaluations.score}}</i>
+        </div>
+        <p>{{this.TeacherEvaluations.comment}}</p>
+      </div>
+      {{/each}}
+  </div>
+</div>
+<a href="/user/{{student.id}}/edit" class="btn btn-primary btn-block">Edit</a>
