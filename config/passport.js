@@ -36,7 +36,7 @@ passport.use(new FacebookStrategy({
     const randomPassword = Math.random().toString(36).slice(-8)
     const saltPassword = await bcrypt.hash(randomPassword, 10)
     const user = await User.create({
-      account: name,
+      name,
       email,
       password: saltPassword
     })
