@@ -19,6 +19,7 @@ const userController = {
     const { role, id } = req.user
     if (role === 'teacher') res.redirect(`/user/${id}/teacher`)
     if (role === 'student') res.redirect('/user/course')
+    if (role === 'admin') res.redirect('/admin/users')
   },
   logout: (req, res) => {
     req.flash('success_messages', '登出成功!')
@@ -78,6 +79,16 @@ const userController = {
   },
   getTeacherEdit: (req, res, next) => {
     userServices.getTeacherEdit(req, (err, data) => err ? next(err) : res.render('teacher/teacher_edit', data))
+  },
+  putTeacherEdit: (req, res, next) => {
+    userServices.putTeacherEdit(req, (err, data) => {
+      if (err) return next(err)
+      req.flash('success_messages', '資料修改成功')
+      res.redirect(`/user/${req.user.id}/teacher`)
+    })
+  },
+  getUsers: (req, res, next) => {
+    userServices.getUsers(req, (err, data) => err ? next(err) : res.render('admin/user', data))
   }
 }
 

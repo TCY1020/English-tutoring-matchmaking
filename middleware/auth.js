@@ -7,7 +7,7 @@ const authenticated = (req, res, next) => {
 const authenticatedStudent = (req, res, next) => {
   if (getUser(req).role === 'student') return next()
   if (getUser(req).role === 'teacher') {
-    return res.redirect(`/user/${req.id}/teacher`)
+    return res.redirect(`/user/${req.user.id}/teacher`)
   }
   if (getUser(req).role === 'admin') {
     return res.redirect('/admin/users')
@@ -28,7 +28,7 @@ const authenticatedAdmin = (req, res, next) => {
     return res.redirect('/user/course')
   }
   if (getUser(req).role === 'teacher') {
-    return res.redirect(`/user/${req.id}/teacher`)
+    return res.redirect(`/user/${req.user.id}/teacher`)
   }
 }
 
