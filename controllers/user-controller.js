@@ -19,6 +19,7 @@ const userController = {
     const { role, id } = req.user
     if (role === 'teacher') res.redirect(`/user/${id}/teacher`)
     if (role === 'student') res.redirect('/user/course')
+    if (role === 'admin') res.redirect('/user/course')
   },
   logout: (req, res) => {
     req.flash('success_messages', '登出成功!')
