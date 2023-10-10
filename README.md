@@ -1,5 +1,5 @@
 # English-tutoring-matchmaking(英文家教媒合平台)
-![English-tutoring-matchmaking-首頁](./public/imge/Recording 2023-10-10 at 16.08.00.gif)
+![English-tutoring-matchmaking-首頁](./public/image/Recording%202023-10-10%20at%2016.08.00.gif)
 ## 介紹
 
 記錄屬於自己的帳戶支出，使用者可以登入帳戶、記錄支出、新增及刪除支出、依照分類瀏覽支出狀況。
