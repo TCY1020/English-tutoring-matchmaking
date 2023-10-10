@@ -14,6 +14,9 @@ router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/signin' }), userController.postSignIn)
 router.get('/logout', userController.logout)
 
+// Admin路由
+router.get('/admin/users', authenticated, authenticatedAdmin, userController.getUsers)
+
 // 老師路由
 router.get('/user/:id/teacher/edit', authenticated, authenticatedTeacher, userController.getTeacherEdit)
 router.put('/user/:id/teacher/edit', authenticated, authenticatedTeacher, upload.single('image'), userController.putTeacherEdit)

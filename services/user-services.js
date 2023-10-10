@@ -361,6 +361,14 @@ const userServices = {
     } catch (err) {
       cb(err)
     }
+  },
+  getUsers: async (req, cb) => {
+    try {
+      const users = await User.findAll({ raw: true })
+      cb(null, { users })
+    } catch (err) {
+      cb(err)
+    }
   }
 }
 
