@@ -46,19 +46,19 @@
   - 密碼: 12345678 
 + 使用者2(user2):
   - 身分: 學生
-  - 帳號: user1@example.com
+  - 帳號: user2@example.com
   - 密碼: 12345678 
 + 使用者3(user3):
   - 身分: 學生
-  - 帳號: user1@example.com
+  - 帳號: user3@example.com
   - 密碼: 12345678 
 + 使用者4(user4):
   - 身分: 老師
-  - 帳號: user1@example.com
+  - 帳號: user4@example.com
   - 密碼: 12345678 
 + 使用者4(user5):
   - 身分: 老師
-  - 帳號: user1@example.com
+  - 帳號: user5@example.com
   - 密碼: 12345678 
 
 ## 開發工具
