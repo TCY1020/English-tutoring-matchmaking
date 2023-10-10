@@ -14,10 +14,12 @@ router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/signin' }), userController.postSignIn)
 router.get('/logout', userController.logout)
 
+// 老師路由
 router.get('/user/:id/teacher/edit', authenticated, authenticatedTeacher, userController.getTeacherEdit)
-router.put('/user/:id/teacher/edit', upload.single('image'), userController.putTeacherEdit)
+router.put('/user/:id/teacher/edit', authenticated, authenticatedTeacher, upload.single('image'), userController.putTeacherEdit)
 router.get('/user/:id/teacher', authenticated, authenticatedTeacher, userController.getTeacher)
 
+// 學生路由
 router.get('/user/course/:id', authenticated, authenticatedStudent, userController.getCourse)
 router.post('/user/course/booking', authenticated, authenticatedStudent, userController.postBooking)
 router.get('/user/course', authenticated, authenticatedStudent, userController.getCourses)
@@ -28,6 +30,7 @@ router.put('/user/:id/edit', authenticated, authenticatedStudent, upload.single(
 router.post('/user/comment', authenticated, authenticatedStudent, userController.postComment)
 router.get('/user/:bookingId/comment', authenticated, authenticatedStudent, userController.getComment)
 router.get('/user/:id', authenticated, authenticatedStudent, userController.getStudent)
+
 router.get('/', (req, res) => res.redirect('/user/course'))
 router.use('/', generalErrorHandler)
 
