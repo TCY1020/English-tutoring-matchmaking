@@ -78,6 +78,13 @@ const userController = {
   },
   getTeacherEdit: (req, res, next) => {
     userServices.getTeacherEdit(req, (err, data) => err ? next(err) : res.render('teacher/teacher_edit', data))
+  },
+  putTeacherEdit: (req, res, next) => {
+    userServices.putTeacherEdit(req, (err, data) => {
+      if (err) return next(err)
+      req.flash('success_messages', '資料修改成功')
+      res.redirect(`/user/${req.user.id}/teacher`)
+    })
   }
 }
 

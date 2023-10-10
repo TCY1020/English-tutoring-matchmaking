@@ -232,7 +232,7 @@ const userServices = {
         name,
         introduction,
         country,
-        avatar: filePath || user.image
+        avatar: filePath || user.avatar || null
       })
       cb(null, updateUser)
     } catch (err) {
@@ -321,6 +321,43 @@ const userServices = {
       const user = await User.findByPk(id, { raw: true })
       if (!user) throw new Error('使用者不存在')
       cb(null, user)
+    } catch (err) {
+      cb(err)
+    }
+  },
+  putTeacherEdit: async (req, cb) => {
+    try {
+      const { name, introduction, teachingStyle, spendTime, days, courseName, link, startTime, endTime } = req.body
+      if (!name || !introduction || !teachingStyle || !spendTime || !days || !courseName || !link || !startTime || !endTime) { throw new Error('全部都是必填') }
+      const { id } = req.user
+      const { file } = req
+      const today = new Date()
+      const [user, filePath] = await Promise.all([
+        User.findByPk(id),
+        imgurFileHandler(file)
+      ])
+      if (!user) throw new Error('使用者不存在')
+      const weekStarDate = await nextWeekStar(today)
+      const theTime = await weekPlanDate(startTime, endTime, days, weekStarDate)
+      await user.update({
+        name,
+        avatar: filePath || user.avatar || null,
+        introduction,
+        teachingStyle
+      })
+      await Promise.all(
+        Array.from({ length: theTime.length }, (_, time) => (
+          Course.create({
+            teacherId: id,
+            spendTime,
+            courseName,
+            link,
+            startTime: theTime[time].start,
+            endTime: theTime[time].end
+          })
+        ))
+      )
+      cb(null)
     } catch (err) {
       cb(err)
     }
