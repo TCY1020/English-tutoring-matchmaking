@@ -1,7 +1,7 @@
 const dayjs = require('dayjs')
 
 const date = day => dayjs(day).format('YYYY年MM月DD日')
-
+// 依老師課程時間分成時段
 const periodCut = (startTime, endTime, spendTime) => {
   const start = startTime.getTime()
   const end = endTime.getTime()
