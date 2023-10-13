@@ -1,6 +1,6 @@
 # English-tutoring-matchmaking(英文家教媒合平台)
 ![English-tutoring-matchmaking-首頁](./public/image/Recording%202023-10-10%20at%2016.08.00.gif)
-![English-tutoring-matchmaking-ERD](https://www.figma.com/file/Urh3EQpDw1LlAVYEld9h4T/Untitled?type=design&node-id=0%3A1&mode=design&t=eV89KI8KJzJIvFZl-1)
+[English-tutoring-matchmaking-ERD](https://www.figma.com/file/Urh3EQpDw1LlAVYEld9h4T/Untitled?type=design&node-id=0%3A1&mode=design&t=eV89KI8KJzJIvFZl-1)
 ## 介紹
 
 英文家教媒合，使用者可選擇學生或老師的身分，依據不同身分會有不同的介面與功能(如學生可以選課，老師可以開課)
