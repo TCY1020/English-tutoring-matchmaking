@@ -1,5 +1,6 @@
 # English-tutoring-matchmaking(英文家教媒合平台)
 ![English-tutoring-matchmaking-首頁](./public/image/Recording%202023-10-10%20at%2016.08.00.gif)
+![English-tutoring-matchmaking-ERD](https://www.figma.com/file/Urh3EQpDw1LlAVYEld9h4T/Untitled?type=design&node-id=0%3A1&mode=design&t=eV89KI8KJzJIvFZl-1)
 ## 介紹
 
 英文家教媒合，使用者可選擇學生或老師的身分，依據不同身分會有不同的介面與功能(如學生可以選課，老師可以開課)
@@ -63,19 +64,5 @@
 
 ## 開發工具
 
-* "@faker-js/faker": "^8.1.0",
-* "bcryptjs": "^2.4.3",
-* "connect-flash": "^0.1.1",
-* "dayjs": "^1.11.10",
-* "express": "^4.17.1",
-* "express-handlebars": "^7.1.2",
-* "express-session": "^1.17.3",
-* "imgur": "^1.0.2",
-* "method-override": "^3.0.0",
-* "multer": "^1.4.3",
-* "mysql2": "^3.6.1",
-* "passport": "^0.4.1",
-* "passport-facebook": "^3.0.0",
-* "passport-local": "^1.0.0",
-* "sequelize": "^6.33.0",
-* "sequelize-cli": "^6.6.1"
+* "MySQL Workbench 8.0 CE",
+* "figma",
