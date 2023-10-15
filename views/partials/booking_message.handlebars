@@ -1,0 +1,19 @@
+<div class="modal fade" id="book-course-model"  >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">確定要預約此課程嗎？</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="bookDate">上課時間：</p>
+        <p>授課老師：{{teacher.User.name}}</p>
+        <p>課程連結：<a href="{{teacher.link}}">{{teacher.link}}</a></p>
+      </div>
+      <div class="modal-footer">
+        <button id="confirm-booking-btn" type="submit" class="custom-solid-button booking-btn btn btn-primary mb-3"
+          data-bs-dismiss="modal">確定</button>
+      </div>
+    </div>
+  </div>
+</div>
