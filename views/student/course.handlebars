@@ -14,12 +14,14 @@
       <label class="form-label" for="timePeriod">預約上課 : {{relativeTimeFromNow teacher.startTime}}</label>
       <select class="form-control" id="timePeriod" name="timePeriod">
         {{#each periods}}
-        <option value="{{this.no}}">{{this.time}}</option>
+        <option value="{{this.no}}" data-time="{{this.time}}">{{this.time}}</option>
         {{/each}}
       </select>
     </div>
     <input type="hidden" name="courseId" value="{{teacher.id}}">
-    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+    <button type="button" class="custom-solid-button booking-btn btn btn-primary mb-3" data-bs-toggle="modal"
+      data-bs-target="#book-course-model" onclick="updateBookDate(timePeriod)">預約</button>
+      {{> booking_message}}
   </form>
   <hr>
 </div>
@@ -59,3 +61,16 @@
 
 
 <a class="btn btn-outline-secondary" href="javascript:history.back()">Back</a>
+
+<script>
+  function updateBookDate(selectElement) {
+    // 選取要取的值
+    const selectedTime = selectElement.options[selectElement.selectedIndex].getAttribute("data-time");
+
+    // 找到要放的地方屬性
+    const bookDateElement = document.getElementById("bookDate");
+
+    // 更新時間內容
+    bookDateElement.textContent = "上课时间：" + selectedTime;
+  }
+</script>
