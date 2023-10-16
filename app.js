@@ -16,6 +16,7 @@ const port = process.env.PORT || 3000
 app.engine('handlebars', engine({ helpers: handlebarsHelpers }))
 app.set('view engine', 'handlebars')
 app.use(express.urlencoded({ extended: true }))
+app.use(express.static('public')) // 這個是一個 middleware，最常被用在要讀取一些靜態檔案上面
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
