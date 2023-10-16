@@ -19,8 +19,8 @@
       </select>
     </div>
     <input type="hidden" name="courseId" value="{{teacher.id}}">
-    <button type="button" class="custom-solid-button booking-btn btn btn-primary mb-3" data-bs-toggle="modal"
-      data-bs-target="#book-course-model" onclick="updateBookDate(timePeriod)">預約</button>
+    <button type="button" class="custom-solid-button booking-btn btn btn-primary mb-3" data-bs-toggle="modal"  id="booking-course"
+      data-bs-target="#book-course-model" >預約</button>
       {{> booking_message}}
   </form>
   <hr>
@@ -61,16 +61,4 @@
 
 
 <a class="btn btn-outline-secondary" href="javascript:history.back()">Back</a>
-
-<script>
-  function updateBookDate(selectElement) {
-    // 選取要取的值
-    const selectedTime = selectElement.options[selectElement.selectedIndex].getAttribute("data-time");
-
-    // 找到要放的地方屬性
-    const bookDateElement = document.getElementById("bookDate");
-
-    // 更新時間內容
-    bookDateElement.textContent = "上课时间：" + selectedTime;
-  }
-</script>
+<script src="/public/javascript/booking.js"></script>

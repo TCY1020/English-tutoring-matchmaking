@@ -100,7 +100,6 @@ const userServices = {
           periods.splice(bookedTimePeriod[i], 1)
         }
       }
-      console.log(periods)
       cb(null, { teacher, evaluation, periods })
     } catch (err) {
       cb(err)
